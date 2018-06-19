@@ -5,7 +5,8 @@
 # Usage:
 #   docker build --force-rm -t <image_name> --build-arg branch_name=<branch_name> .
 # Container:
-#	docker create -p 8888:8888 -v /home/tomas/.m2:/root/.m2 --name <container_name>
+# 1 - docker create -p 8888:8888 -v /home/tomas/.m2:/root/.m2 --name config-server config-server
+# 2 - docker create -p 8888:8888 -v /c/Users/tomas.maiorino/.m2:/root/.m2 --name config-server config-server
 # **********************************************************************************************************************
 FROM maven:3-jdk-8-slim
 ARG branch_name
@@ -33,6 +34,10 @@ RUN mkdir /app
 WORKDIR /app
 RUN git clone $APPLICATION_REPO
 WORKDIR /app/tsm-config-server
+
 RUN git checkout $branch_name
+
+# set the start file to an executable
+RUN chmod +x starting_container.sh
 
 ENTRYPOINT ["/bin/bash", "-c", "/app/tsm-config-server/./starting_container.sh ${branch_name} ${port} ${custom_mvn_parameters}"]
