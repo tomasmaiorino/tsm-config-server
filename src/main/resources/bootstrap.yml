@@ -5,3 +5,10 @@ eureka:
       defaultZone: http://eureka:8761/eureka
     healthcheck:
       enabled: true
+spring:
+  application:
+    name: config-service
+  cloud:
+    config:
+      discovery:
+        enabled: true      

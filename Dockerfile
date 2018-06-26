@@ -6,7 +6,7 @@
 #   docker build --force-rm -t <image_name> --build-arg branch_name=<branch_name> .
 # Container:
 # 1 - docker create -p 8888:8888 -v /home/tomas/.m2:/root/.m2 --name config-server config-server
-# 2 - docker create -p 8888:8888 -v /c/Users/tomas.maiorino/.m2:/root/.m2 --name config-server config-server
+# 2 - docker create --link eureka -p 8888:8888 -v /c/Users/tomas.maiorino/.m2:/root/.m2 --name config-server config-server
 # **********************************************************************************************************************
 FROM maven:3-jdk-8-slim
 ARG branch_name

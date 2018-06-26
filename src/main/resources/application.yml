@@ -5,8 +5,6 @@ spring:
     name: config-service
   cloud:
     config:
-      discovery:
-        enabled: true
       server:
         git:
           uri: https://github.com/tomasmaiorino/config-repo.git
